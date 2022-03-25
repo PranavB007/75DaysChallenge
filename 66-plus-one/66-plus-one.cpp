@@ -1,27 +1,21 @@
 class Solution {
 public:
-    void recc(vector<int> & d, int pos, int carr)
-    {
-        d[pos] = d[pos] + carr;
-        carr=0;
-        if(d[pos]>9)
+    vector<int> plusOne(vector<int> &digits){
+        int n = digits.size();
+        for (int i = n - 1; i >= 0; --i)
         {
-            d[pos]  = d[pos] -10;
-            carr =1;
+            if (digits[i] == 9)
+            {
+                digits[i] = 0;
+            }
+            else
+            {
+                digits[i]++;
+                return digits;
+            }
         }
-        if(pos-1==-1 && carr==0)
-            return;
-        else if( pos-1==-1 && carr !=0)
-        {
-            d.push_back(carr);
-            reverse(d.begin(),d.end());
-            return;
-        }
-        recc(d,pos-1,carr);
-        
-    }
-    vector<int> plusOne(vector<int>& digits) {
-        recc(digits,digits.size()-1,1);
+		digits[0] =1;
+		digits.push_back(0);
         return digits;
     }
 };
